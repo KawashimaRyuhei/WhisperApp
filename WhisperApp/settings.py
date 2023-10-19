@@ -31,8 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'audiofileconversion',
-    'audiofileconversion.apps.AudiofileconversionConfig'
+    'audiofileconversion.apps.AudiofileconversionConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

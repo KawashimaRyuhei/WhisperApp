@@ -1,8 +1,6 @@
 from django.shortcuts import HttpResponse
 from django.template import loader
-
 from django.shortcuts import render
-
 from .models import Question
 
 # def index(request):
@@ -26,6 +24,14 @@ def results(request, question_id):
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
 
+## To Whisper
+def speech_to_text(request):
+    if request.method == "POST":
+        audio_file = request.FILES['audio_file']
+        transcriber = Transcriber()
+        text = transcriber.transcribe(audio_file)
 
+        return render(request, 'result.html', {'text': text})
+    return render(request, 'upload.html')
 
 # Create your views here.

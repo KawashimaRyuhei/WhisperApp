@@ -1,7 +1,9 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
-from .models import Question
+from django.urls import reverse
+
+from .models import Choice, Question
 from django.http import Http404
 
 def index(request):
@@ -24,8 +26,19 @@ def results(request, question_id):
     return render(request, "audiofileconversion/results.html", response % question_id)
 
 def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
-
-
-
-# Create your views here.
+    question = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = question.choice_set.get(pk=request.POST["choice"])
+    except(KeyError, Choice.DoesNotExist):
+        return render(
+            request,
+            "audiofileconversion/detail.html",
+            {
+                "question": question,
+                "error_message": "You didn't select a choice."
+            },
+        )
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        return HttpResponseRedirect(reverse("audiofileconversion:results", args=(question.id)))

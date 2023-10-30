@@ -22,8 +22,11 @@ def detail(request, question_id):
     return render(request, "audiofileconversion/detail.html", {"question": question})
 
 def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return render(request, "audiofileconversion/results.html", response % question_id)
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, "audiofileconversion/results.html", {"question": question})
+
+    # response = "You're looking at the results of question %s."
+    # return render(request, "audiofileconversion/results.html", response % question_id)
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)

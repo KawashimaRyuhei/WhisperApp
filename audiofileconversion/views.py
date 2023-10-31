@@ -1,6 +1,4 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import HttpResponse, HttpResponseRedirect
-
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
@@ -23,22 +21,6 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = "audiofileconversion/results.html"
-
-
-
-# def index(request):
-#     latest_question_list = Question.objects.order_by("-pub_date")[:5]
-#     template = loader.get_template("audiofileconversion/index.html")
-#     context = {"latest_question_list": latest_question_list}
-#     return HttpResponse(template.render(context, request))
-
-# def detail(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     return render(request, "audiofileconversion/detail.html", {"question": question})
-
-# def results(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     return render(request, "audiofileconversion/results.html", {"question": question})
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)

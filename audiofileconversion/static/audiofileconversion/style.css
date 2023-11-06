@@ -1,3 +1,7 @@
 li a {
   color: green;
 }
+
+body {
+  background: white url("images/water_00003.jpeg") no-repeat;
+}

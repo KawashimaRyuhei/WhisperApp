@@ -66,4 +66,3 @@ class QuestionIndexViewTests(TestCase):
             [question2, question1],
         )
 
-    

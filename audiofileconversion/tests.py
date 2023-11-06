@@ -66,7 +66,7 @@ class QuestionIndexViewTests(TestCase):
             [question2, question1],
         )
 
-class QuestionDetailViewTest(TestCase):
+class QuestionDetailViewTests(TestCase):
     def test_future_question(self):
         future_question = create_question(question_text="Future question.", days=5)
         url = reverse("audiofileconversion:detail", args=(future_question.id,))
